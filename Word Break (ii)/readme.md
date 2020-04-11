@@ -2,7 +2,7 @@
 
 In this problem we are given a dictionary of words and a string just like this (example from leetcode)
 
-`"catsanddo", ["cat", "cats", "and", "sand", "dog"]`
+`"catsanddog", ["cat", "cats", "and", "sand", "dog"]`
 
 and we are required to return all possible all possible splits for the string such that each word in the split exists in the dictionary.
 
@@ -16,6 +16,8 @@ In word break 1 it's required to return only a boolean indicating whether we can
 ------------------
 What comes first to any mind is the brute force solution.
 We can use recursion and whenever we find a valid split we do it and check if the rest of string can be splitted.
+
+**Time Complexity** O(2^(n-2))
 
 One question is though, how to determine if a split is valid ?
 
@@ -82,44 +84,22 @@ example:
 
     4.  Current string = "", split = "cat sand dog"
         The string is now empty, we found a match!
+        Save this match and continue
+
+**Time Complexity** O(2^(N-2))
 
 ## Second Approach
 --------------------
 
 Let's try to make the 1st approach faster by adding memoization.
 
-Once we visit an index and we find a valid split, let's save them.
+Once we visit an index and find valid splits, let's save them.
 
 The complexity here for time and space depends on the number of valid splits, since all splits will be found and saved.
 
+**Time Complexity** O(N^2)
 
 ## Third Approach
------------------
-
-We can add a minor optimization to the solution above by only visiting states in which it's guranteed to find a solution by using Word Break 1.
-
-So before splitting we can call our old solve function, to check that there is a solution after doing this split.
-
-This means that we only save and iterate through splits which will give one of the solutions.
-
-All other valid splits will be discarded.
-
-example:
-    let s = "abbc" and dictionary = ["a", "b", "bb", "bc"]
-    
-    Second approach
-    
-    1. Current string = "abbc", split = ""
-    
-    2. Current Stirng = "bbc", split = "a bb"
-       Let's split using bb
-
-    3. Current Stirng = "c", split = "c"
-       No valid solution exists! 
-
-    The third approach would not visit this state.   
-
-## Fourth Approach
 ------------------
 Let's modify Word Break 1 in such a way which helps us build a **Graph**, DAG in particular.
 
@@ -158,7 +138,7 @@ We create an edge from index to i+1 denoting that we can split substring
 
 **Space Complexity** : Same as word break 1 in addition to O(M) where M denotes edges for our adjacency list
 
-**Time Complexity** : Same as word break as for the new part, it's `Σ length of all paths`
+**Time Complexity** : Same as word break as for the new part, it's O(N + M) for the dfs.
 
 ## Shortest Solution
 --------------------
