@@ -138,7 +138,7 @@ We create an edge from index to i+1 denoting that we can split substring
 
 **Space Complexity** : Same as word break 1 in addition to O(M) where M denotes edges for our adjacency list
 
-**Time Complexity** : Same as word break as for the new part, it's O(N + M) for the dfs.
+**Time Complexity** : Same as word break 1 as for the new part, it's O(N + M) for the dfs.
 
 ## Shortest Solution
 --------------------
