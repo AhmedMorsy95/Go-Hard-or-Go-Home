@@ -158,12 +158,13 @@ We create an edge from index to i+1 denoting that we can split substring
 
 **Space Complexity** : Same as word break 1 in addition to O(M) where M denotes edges for our adjacency list
 
-**Time Complexity** : Same as word break as for the new part, it's `Σ length of all path`
+**Time Complexity** : Same as word break as for the new part, it's `Σ length of all paths`
 
 ## Shortest Solution
 --------------------
 
-We will get rid of the Trie and instead use an unordered_set (Hash Table) to find the strings.
+Dynamic Programming + unordered_set (Hash Table) instead of using a Trie to find the strings.
+
 
 ```
         vector<string> solve(int index, string &s){
