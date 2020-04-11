@@ -134,7 +134,7 @@ This problem can be mapped to printing all valid paths from a source to a destin
 
 The question is now how to build it ?
 
-If you still remember -and bear with me this is the final approach- Word Break 1 solution we can add a simple modification to build the graph.
+If you still remember Word Break 1 solution we can add a simple modification to build the graph.
 
 ```
                 for(int i=index; i<s.length(); i++){
@@ -156,6 +156,36 @@ If you still remember -and bear with me this is the final approach- Word Break 1
 We create an edge from index to i+1 denoting that we can split substring
 [index,i] and it's guranteed to find a solution starting from i+1.
 
-**Space Complexity** : Same as word break 1 in addition to O(N + M) where N denotes nodes and M denotes edges for our adjacency matrix
+**Space Complexity** : Same as word break 1 in addition to O(M) where M denotes edges for our adjacency list
 
-**Time Complexity** : Same as word break as for the new part, it's O(Paths) where each path represents a solution 
+**Time Complexity** : Same as word break as for the new part, it's `Σ length of all path`
+
+## Shortest Solution
+--------------------
+
+We will get rid of the Trie and instead use an unordered_set (Hash Table) to find the strings.
+
+```
+        vector<string> solve(int index, string &s){
+        if(index == s.length())
+            return vector<string>{""};
+
+        if(dp.count(index))
+                return dp[index];
+
+        dp[index] = vector<string>();
+        string current = "";
+        for(int i=index; i<s.length(); i++){
+            current += s[i];
+            if(dictionary.count(current)){ /// found a split
+                vector<string> nxt = solve(i+1, s);
+                /// if the split returns any solutions, add them.
+                for(string s : nxt){
+                    dp[index].push_back(index ? " " + current + s : current + s);
+                }
+            }
+        }
+        return dp[index];
+    }
+```
+
