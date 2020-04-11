@@ -146,7 +146,7 @@ If you still remember Word Break 1 solution we can add a simple modification to 
                        if(found_solution){
                             can = true;
                             /// This is the one
-                            adjacency_matrix[index].push_back(i+1);
+                            adjacency_list[index].push_back(i+1);
                        }
                     }
                 }

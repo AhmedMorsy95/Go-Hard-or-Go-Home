@@ -45,7 +45,7 @@ class Solution{
     public:
         shared_ptr<Trie> dictionary;
         vector<int>dp;
-        vector<vector<int> > adjacency_matrix;
+        vector<vector<int> > adjacency_list;
         vector<string> sol;
 
         Solution(){
@@ -56,7 +56,7 @@ class Solution{
                 dictionary->insert(word);
 
             dp.resize(s.length());
-            adjacency_matrix.resize(s.length());
+            adjacency_list.resize(s.length());
             fill(dp.begin(),dp.end(),-1);
 
             solve(0,s);
@@ -83,7 +83,7 @@ class Solution{
                        bool found_solution = solve(i+1, s);
                        if(found_solution){
                             can = true;
-                            adjacency_matrix[index].push_back(i+1);
+                            adjacency_list[index].push_back(i+1);
                        }
                     }
                 }
@@ -103,7 +103,7 @@ class Solution{
                 return;
             }
 
-            for(int i:adjacency_matrix[index]){
+            for(int i:adjacency_list[index]){
                 indices.push_back(i);
                 dfs(i, indices, sol, s);
                 indices.pop_back();
