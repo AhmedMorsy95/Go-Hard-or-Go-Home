@@ -28,7 +28,7 @@ One question is though, how to determine if a split is valid ?
 
 ## Second Approach
 -------------------
-Let's make our recursion faster using [memoization](https://en.wikipedia.org/wiki/Memoization) so that we don't visit a node in the recursion tree more than once.
+Let's make our recursion faster using [memoization](https://en.wikipedia.org/wiki/Memoization) so that we don't visit an index more than once.
 
 ### Complexity Analysis
 --------------------
