@@ -121,7 +121,7 @@ example:
 
 ## Fourth Approach
 ------------------
-Let's modify Word Break 1 in such a way which helps us build a **Graph**.
+Let's modify Word Break 1 in such a way which helps us build a **Graph**, DAG in particular.
 
 This problem can be mapped to printing all valid paths from a source to a destination.
 
