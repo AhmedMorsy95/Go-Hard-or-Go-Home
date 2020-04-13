@@ -67,12 +67,12 @@ But **before this** let's remove from the back all the elements smaller than it.
 
 let's simulate the first 3 insertions
 1. [(1,0)]
-2. 1 is smaller than 3 so removes it [(3,1)]
+2. 1 is smaller than 3 so remove it [(3,1)]
 3. 3 is bigger, so just insert it at the back, [(3,1), (-1,2)]
 
 ### Finding the max
 
-If we keep on inserting, then after a couple of iteration we will get a wrong answer.
+If we keep on inserting, then after a couple of iterations we will get a wrong answer.
 
 **Why**
 
@@ -81,7 +81,7 @@ For the first max number, we get it right which is 3.
 
 Let's continue one more iteration
 
-We insert -3 so the deque becomes [(3,1), (-1,2), (-3,2)] and the front is 3 but isn't it out of the current window ?
+We insert -3 so the deque becomes [(3,1), (-1,2), (-3,3)] and the front is 3 but isn't it out of the current window ?
 
 Simple! let's pop all invalid numbers from the front of the deque before asking for the max.
 
@@ -93,3 +93,4 @@ Note that we don't pop here unless an invalid number is at the front, which mean
 
 Note that each element is inserted once and poped once.
 
+**Note**: we can only keep the index of the number in the queue and for getting the value, we can use it and index the array. However I used pair to ease the illustration of the approach.
