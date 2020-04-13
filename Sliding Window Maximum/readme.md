@@ -41,7 +41,7 @@ We want a data structure which
 
 We can use Balanced Binary search trees for this where each query can be executed in O(logn)
 
-Can we use a heap instead ?
+Can we use a heap ?
 
 **Complexity** O(nlogk) time and O(K) additional space
 
