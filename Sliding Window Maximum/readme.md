@@ -20,7 +20,7 @@ For each K elements let's loop and find the max element.
             calculate the max and save it
 ```
 
-cO(N*K) but what's worth mentioning is that we are not using additional space.
+O(N*K) but what's worth mentioning is that we are not using additional space.
 
 ## Second Approach
 -----------------
