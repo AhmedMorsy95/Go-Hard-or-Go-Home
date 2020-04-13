@@ -29,12 +29,12 @@ class Trie: public std::enable_shared_from_this<Trie> {
                       current_node->is_leaf = true;
             }
         }
-
+	// given a node returns whether this node has a child with character c
         bool has_character(char c){
             int index = c-'a';
             return this->children[index] != nullptr;
         }
-
+	// get the child of the current node which has char c, in other words append char c to the current word
         shared_ptr<Trie> get_node_from_char(char c){
             int index = c-'a';
             return this->children[index];
@@ -67,9 +67,11 @@ class Solution{
             bool can = 0;
             shared_ptr<Trie> current_node = dictionary;
             for(int i=index; i<s.length() && !can; i++){
+		// early break if the current word is not in the trie
                 if(!current_node->has_character(s[i]))
                     break;
                 current_node = current_node->get_node_from_char(s[i]);
+		// if the word exists then try to split
                 if(current_node-> is_leaf)
                     can |= solve(i+1, s);
             }

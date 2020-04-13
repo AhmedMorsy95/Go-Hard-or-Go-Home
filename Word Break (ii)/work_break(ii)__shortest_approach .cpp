@@ -8,7 +8,7 @@ using namespace std;
 
 class Solution{
     public:
-    unordered_set<string>dictionary;
+    unordered_set<string>dictionary; 
     unordered_map<int,vector<string> > dp;
 
     vector<string> wordBreak(string s, vector<string>& wordDict) {
@@ -20,7 +20,7 @@ class Solution{
     vector<string> solve(int index, string &s){
         if(index == s.length())
             return vector<string>{""};
-
+	// memoization
         if(dp.count(index))
                 return dp[index];
 
@@ -30,11 +30,13 @@ class Solution{
             current += s[i];
             if(dictionary.count(current)){ /// found a split
                 vector<string> nxt = solve(i+1, s);
+		// merge this solution with all other solutions found
                 for(string s : nxt){
                     dp[index].push_back(index ? " " + current + s : current + s);
                 }
             }
         }
+	// return all solutions found
         return dp[index];
     }
 };

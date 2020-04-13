@@ -76,12 +76,14 @@ class Solution{
                 shared_ptr<Trie> current_node = dictionary;
 
                 for(int i=index; i<s.length(); i++){
-                    if(!current_node->has_character(s[i]))
+		   // if there is no such a word in the dict then early break 
+		   if(!current_node->has_character(s[i]))
                         break;
                     current_node = current_node->get_node_from_char(s[i]);
                     if(current_node-> is_leaf){
                        bool found_solution = solve(i+1, s);
                        if(found_solution){
+			    // add an edge from index -> i+1 if a solution exists after this split	 		
                             can = true;
                             adjacency_list[index].push_back(i+1);
                        }
@@ -93,6 +95,8 @@ class Solution{
         void dfs(int index, vector<int> &indices, vector<string> &sol, string &s){
             if(index == s.length()){
                 string str = "";
+		// construct the solution if the vector has elemetns [3,5]
+		// then this means we did 2 splits at each of these indices so add a space there
                 int cur_index = 0, str_position = 0;
                 while(cur_index < indices.size()){
                     if(str_position) str += ' ';
@@ -102,7 +106,7 @@ class Solution{
                 sol.push_back(str);
                 return;
             }
-
+            // apply all splits		
             for(int i:adjacency_list[index]){
                 indices.push_back(i);
                 dfs(i, indices, sol, s);
