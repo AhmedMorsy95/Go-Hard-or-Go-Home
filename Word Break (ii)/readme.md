@@ -28,7 +28,7 @@ One question is though, how to determine if a split is valid ?
 
 ## Second Approach
 -------------------
-Let's make our recursion faster using [memoization](https://en.wikipedia.org/wiki/Memoization) so that we don't visit a node in the recursion tree more than once.
+Let's make our recursion faster using [memoization](https://en.wikipedia.org/wiki/Memoization) so that we don't visit an index more than once.
 
 ### Complexity Analysis
 --------------------
@@ -138,7 +138,7 @@ We create an edge from index to i+1 denoting that we can split substring
 
 **Space Complexity** : Same as word break 1 in addition to O(M) where M denotes edges for our adjacency list
 
-**Time Complexity** : Same as word break as for the new part, it's O(N + M) for the dfs.
+**Time Complexity** : Same as word break 1 as for the new part, it depends on the number of paths since we generate all of them.
 
 ## Shortest Solution
 --------------------
