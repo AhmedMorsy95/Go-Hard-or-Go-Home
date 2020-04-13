@@ -65,7 +65,7 @@ Assuming the max element at the front of the deque, we don't want to ruin that.
 Let's insert the new element at the end of the deque.
 But **before this** let's remove from the back all the elements smaller than it.
 
-let's simulate first 3 insertions
+let's simulate the first 3 insertions
 1. [(1,0)]
 2. 1 is smaller than 3 so removes it [(3,1)]
 3. 3 is bigger, so just insert it at the back, [(3,1), (-1,2)]
