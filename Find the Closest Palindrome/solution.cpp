@@ -43,7 +43,7 @@ string best = "Garabage";
     Generates the first half of the palindrome then finds the difference between this palindrome and the original number
 */
 
-void solve(ll prefix, string &s, int  idx){
+void solve(ll prefix, string &s, int  idx, bool increment, bool decrement){
     int mid_point = ((int)s.length() + 1) / 2;
     if(idx == mid_point){
         ll suffix = 0;
@@ -73,11 +73,21 @@ void solve(ll prefix, string &s, int  idx){
         }
         else if(cost == mn && to_string(prefix) < best)
             best = to_string(prefix);
+
+        return;
     }
 
-    /// try all choices
-    for(int i : choices[idx])
-        solve(prefix*10 + i, s, idx+1);
+    /*
+       Try all different combinations.
+       After incrementing a digit we want to minimize the value so, append the prefix with zeros.
+       After decrementing a digit we want to maximize the value so, append the prefix with 9s.
+    */
+    if(increment) solve(prefix*10, s,idx+1, 1,0);
+    else if(decrement) solve(prefix*10+9, s, idx+1,0,1);
+    else{
+        for(int i : choices[idx])
+            solve(prefix*10 + i, s, idx+1, (s[idx]-'0') < i, (s[idx]-'0') > i);
+    }
 
 }
     string nearestPalindromic(string s) {
@@ -103,7 +113,7 @@ void solve(ll prefix, string &s, int  idx){
     }
 
     /// generate nearest palindrome of length n
-    solve(0,s,0);
+    solve(0,s,0,0,0);
     solutions.pb(make_pair(mn, best));
 
     /// generate largest palindorme with length n-1 if exists
